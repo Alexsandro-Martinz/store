@@ -56,7 +56,16 @@
                 Forgot your password?
               </button>
             </form>
-      
+            <!-- Messages -->
+            {% if messages %}
+              {% for message in messages %}
+              <br><div class="alert alert-danger" role="alert">
+              <strong>{{ message }}</strong>
+              <button class="close" onClick="this.parentElement.remove()"
+              >X</button>
+              </div><br>
+              {% endfor %}
+            {% endif %}
             <!-- Modal -->
             <div
               class="modal fade"

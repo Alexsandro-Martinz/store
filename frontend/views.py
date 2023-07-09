@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 def loginView(request):
     if request.user.is_authenticated:
-        print(request.user.username)
-        return render(request, "frontend/index.html")
+        return redirect(reverse('frontend:home'))
 
     if request.method == "POST":
         username = request.POST["username"]
@@ -16,11 +17,18 @@ def loginView(request):
 
         if user is not None:
             login(request, user)
-            return render(request, "frontend/index.html")
+            return redirect(reverse('frontend:home'))
+        else:
+            messages.add_message(request, messages.ERROR, "Error when logging in the user.Try again.")
+            messages.get_messages(request).used = True
 
     return render(request, "frontend/login.html")
+
+@login_required
+def homeView(request):
+   return render(request, "frontend/index.html")
 
 
 def logoutView(request):
     logout(request)
-    return render(request, "frontend/login.html")
+    return redirect(reverse('frontend:login'))
