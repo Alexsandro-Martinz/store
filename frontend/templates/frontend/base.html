@@ -27,7 +27,7 @@
     <div>
       <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'frontend:home' %}">
             <h1 class="tm-site-title mb-0">Product Admin</h1>
           </a>
           <button
@@ -44,13 +44,13 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">
+              <li class="nav-item {% if request.path == '/home'%}active{% endif %}">
+                <a class="nav-link" href="{% url 'frontend:home' %}">
                   <i class="fas fa-tachometer-alt"></i> Dashboard
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown {% if request.path == '/reports'%}active{% endif %}">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -69,18 +69,18 @@
                   <a class="dropdown-item" href="#">Yearly Report</a>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products.html">
+              <li class="nav-item {% if request.path == '/products'%}active{% endif %}">
+                <a class="nav-link" href="{% url 'frontend:products' %}">
                   <i class="fas fa-shopping-cart"></i> Products
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="accounts.html">
+              <li class="nav-item {% if request.path == '/accounts'%}active{% endif %}">
+                <a class="nav-link" href="{% url 'frontend:accounts' %}">
                   <i class="far fa-user"></i> Accounts
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown {% if request.path == '/settings'%}active{% endif %}">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
