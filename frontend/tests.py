@@ -24,7 +24,7 @@ class TestLogin(TestCase):
         
         response = self.client.post('/', {'username':username, 'password': password},)
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         
     def test_login_with_invalid_crendentials(self):
         fake = Faker()

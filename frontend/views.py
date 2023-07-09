@@ -11,14 +11,13 @@ from django.views import View
 def productsView(request):
     return render(request, "frontend/products.html")
 
-class LoginView(View):
-    def get(self, request):
-        if request.user.is_authenticated:
-            return redirect(reverse("frontend:home"))
 
-        return render(request, "frontend/login.html")
+def loginView(request):
+    
+    if request.user.is_authenticated:
+        return redirect(reverse("frontend:home"))
 
-    def post(self, request):
+    if request.method == "POST":
         user = authenticate(
             username=request.POST["username"], password=request.POST["password"]
         )
@@ -31,9 +30,8 @@ class LoginView(View):
                 request, messages.ERROR, "Error when logging in the user.Try again."
             )
             messages.get_messages(request).used = True
-            return render(request, "frontend/login.html")
-
-
+            
+    return render(request, "frontend/login.html")
 
 @login_required
 def homeView(request):
