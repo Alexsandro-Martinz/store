@@ -1,212 +1,338 @@
-{% extends 'frontend/base.html' %}
+{% extends 'frontend/base.html' %} {% load static %} {% block content %}
 
-{% block content %}
-
-  <div class="container mt-5">
-    <div class="row tm-content-row">
-      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
-        <div class="tm-bg-primary-dark tm-block tm-block-products">
-          <div class="tm-product-table-container">
-            <table class="table table-hover tm-table-small tm-product-table">
-              <thead>
-                <tr>
-                  <th scope="col">&nbsp;</th>
-                  <th scope="col">PRODUCT NAME</th>
-                  <th scope="col">UNIT SOLD</th>
-                  <th scope="col">IN STOCK</th>
-                  <th scope="col">EXPIRE DATE</th>
-                  <th scope="col">&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                  <td>1,450</td>
-                  <td>550</td>
-                  <td>28 March 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 2</td>
-                  <td>1,250</td>
-                  <td>750</td>
-                  <td>21 March 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 3</td>
-                  <td>1,100</td>
-                  <td>900</td>
-                  <td>18 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 4</td>
-                  <td>1,400</td>
-                  <td>600</td>
-                  <td>24 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 5</td>
-                  <td>1,800</td>
-                  <td>200</td>
-                  <td>22 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 6</td>
-                  <td>1,000</td>
-                  <td>1,000</td>
-                  <td>20 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 7</td>
-                  <td>500</td>
-                  <td>100</td>
-                  <td>10 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 8</td>
-                  <td>1,000</td>
-                  <td>600</td>
-                  <td>08 Feb 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 9</td>
-                  <td>1,200</td>
-                  <td>800</td>
-                  <td>24 Jan 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 10</td>
-                  <td>1,600</td>
-                  <td>400</td>
-                  <td>22 Jan 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">Lorem Ipsum Product 11</td>
-                  <td>2,000</td>
-                  <td>400</td>
-                  <td>21 Jan 2019</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- table container -->
-          <a
-            href="{% url 'frontend:addProducts' %}"
-            class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-          <button class="btn btn-primary btn-block text-uppercase">
-            Delete selected products
-          </button>
+<div class="container mt-5">
+  <div class="row tm-content-row">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+      <div class="tm-bg-primary-dark tm-block tm-block-products">
+        <div class="tm-product-table-container">
+          <table class="table table-hover tm-table-small tm-product-table">
+            <thead>
+              <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">PRODUCT NAME</th>
+                <th scope="col">UNIT SOLD</th>
+                <th scope="col">IN STOCK</th>
+                <th scope="col">EXPIRE DATE</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 1</td>
+                <td>1,450</td>
+                <td>550</td>
+                <td>28 March 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 2</td>
+                <td>1,250</td>
+                <td>750</td>
+                <td>21 March 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 3</td>
+                <td>1,100</td>
+                <td>900</td>
+                <td>18 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 4</td>
+                <td>1,400</td>
+                <td>600</td>
+                <td>24 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 5</td>
+                <td>1,800</td>
+                <td>200</td>
+                <td>22 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 6</td>
+                <td>1,000</td>
+                <td>1,000</td>
+                <td>20 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 7</td>
+                <td>500</td>
+                <td>100</td>
+                <td>10 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 8</td>
+                <td>1,000</td>
+                <td>600</td>
+                <td>08 Feb 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 9</td>
+                <td>1,200</td>
+                <td>800</td>
+                <td>24 Jan 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 10</td>
+                <td>1,600</td>
+                <td>400</td>
+                <td>22 Jan 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td class="tm-product-name">Lorem Ipsum Product 11</td>
+                <td>2,000</td>
+                <td>400</td>
+                <td>21 Jan 2019</td>
+                <td>
+                  <a href="#" class="tm-product-delete-link">
+                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <!-- table container -->
+        <a
+          href="{% url 'frontend:addProducts' %}"
+          class="btn btn-primary btn-block text-uppercase mb-3"
+          >Add new product</a
+        >
+        <button class="btn btn-primary btn-block text-uppercase">
+          Delete selected products
+        </button>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
-        <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-          <h2 class="tm-block-title">Product Categories</h2>
-          <div class="tm-product-table-container">
-            <table class="table tm-table-small tm-product-table">
-              {% if categories %}
-              <tbody>
-                {% for category in categories %}
-                <tr>
-                  <td class="tm-product-name">{{ category.category_name | title }}</td>
-                  <td class="text-center">
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-              {% endif %}
-            </table>
-          </div>
-          <!-- table container -->
-          <button class="btn btn-primary btn-block text-uppercase mb-3">
-            Add new category
-          </button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+      <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+        <h2 class="tm-block-title">Product Categories</h2>
+        <div class="tm-product-table-container">
+          <table class="table tm-table-small tm-product-table">
+            {% if categories %}
+            <tbody>
+              {% for category in categories %}
+              <tr id="tableId{{category.id}}">
+                <td class="tm-product-name">
+                  {{ category.category_name | title }}
+                </td>
+                <td class="text-center">
+                  <a class="tm-product-delete-link">
+                    <i
+                      onclick="deleteCategory({{category.id}})"
+                      class="far fa-trash-alt tm-product-delete-icon"
+                    ></i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            {% endif %}
+          </table>
         </div>
+        <!-- table container -->
+        <button
+          type="button"
+          data-toggle="modal"
+          data-target="#addNewCategoryModal"
+          class="btn btn-primary btn-block text-uppercase mb-3"
+        >
+          Add new category
+        </button>
       </div>
     </div>
   </div>
-  <footer class="tm-footer row tm-mt-small">
-    <div class="col-12 font-weight-light">
-      <p class="text-center text-white mb-0 px-4 small">
-        Copyright &copy; <b>2018</b> All rights reserved. 
-        
-        Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-      </p>
-    </div>
-  </footer>
+</div>
 
-  <script>
-    $(function() {
-      $(".tm-product-name").on("click", function() {
-        window.location.href = "edit-product.html";
-      });
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="addNewCategoryModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="categoryName">Category Name</label>
+        <input
+          name="categoryName"
+          type="text"
+          class="form-control validate"
+          id="categoryName"
+          value=""
+          required
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          onclick="cleanModalValue()"
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          onclick="addNewCategory()"
+          type="button"
+          class="btn btn-primary"
+        >
+          Save category
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="tm-footer row tm-mt-small">
+  <div class="col-12 font-weight-light">
+    <p class="text-center text-white mb-0 px-4 small">
+      Copyright &copy; <b>2018</b> All rights reserved. Design:
+      <a
+        rel="nofollow noopener"
+        href="https://templatemo.com"
+        class="tm-footer-link"
+        >Template Mo</a
+      >
+    </p>
+  </div>
+</footer>
+<script src="{% static 'frontend/scripts/products.js' %}"></script>
+
+<script>
+  $(function () {
+    $(".tm-product-name").on("click", function () {
+      window.location.href = "edit-product.html";
     });
-  </script>
+  });
+</script>
+<script>
+
+  function deleteCategory(categoryId){
+    elementName = "tableId"+categoryId;
+    if(confirm("Delete category?")){
+      
+      $.ajax({
+        type: "POST",
+        url: "{% url 'frontend:delCategory' %}",
+        data: {
+          id: categoryId,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+        success: function (response) {
+          alert(response["messageSuccess"]);
+          document.getElementById(elementName).remove();
+        },
+        error: function (response) {
+          alert(response["responserJSOM"]["error"]);
+        },
+      });
+
+    }
+  }
+
+</script>
+
+<script>
+  function addNewCategory() {
+    let categoryName = document.getElementById("categoryName").value;
+
+    if (categoryName == "" || categoryName == "null") {
+      alert("Category name invalid, please try again!");
+      return;
+    }
+    if ($.isNumeric(categoryName)) {
+      alert("Category name invalid, please try again!");
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'frontend:addCategory' %}",
+      data: {
+        category_name: categoryName,
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+      },
+      success: function (response) {
+        alert(response["messageSuccess"]);
+        cleanModalValue();
+      },
+      error: function (response) {
+        alert(response["responserJSOM"]["error"]);
+      },
+    });
+  }
+</script>
 {% endblock content %}

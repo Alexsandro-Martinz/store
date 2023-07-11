@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -9,6 +10,26 @@ from frontend.forms import AddProductForm
 
 from frontend.models import Category, Product
 
+@login_required
+def delCategory(request) :
+    data = {}
+    if request.accepts('application/json') and request.method == 'POST':
+        id = request.POST['id']
+        get_object_or_404(Category, pk=id).delete()
+        data['messageSuccess'] = 'Deleted with success!'
+    
+    return JsonResponse(data, status=200)
+
+@login_required
+def addCategory(request):
+    data = {}
+    if request.accepts('application/json') and request.method == 'POST':
+        category_name = request.POST['category_name']
+        ct = Category.objects.create(category_name=category_name)
+        ct.save()
+        data['messageSuccess'] = ct.category_name.upper() + ' saved with success!'
+    
+    return JsonResponse(data, status=200)
 
 @login_required
 def productsView(request):
@@ -18,21 +39,25 @@ def productsView(request):
 
 @login_required
 def addProductsView(request):
+    context = {}
     if request.method == "POST":
-        add_product_form = AddProductForm(request)
+        add_product_form = AddProductForm(request.POST)
         if add_product_form.is_valid():
             
-            Product.objects.create(
+            product_add = Product.objects.create(
                 product_name=add_product_form.cleaned_data["product_name"],
                 description=add_product_form.cleaned_data['description'],
                 category_id=add_product_form.cleaned_data['category_id'],
                 expire_date=add_product_form.cleaned_data['expire_date'],
                 units=add_product_form.cleaned_data['units'],
-            ).save()
+            )
+            product_add.save()
+            context['product_add'] = product_add
             
-
     template_name = "frontend/products/add-products.html"
-    context = {"categories": Category.objects.all()}
+    context = {
+        "categories": Category.objects.all(),
+        'products': Product.objects.all(),}
     return render(request, template_name, context)
 
 
