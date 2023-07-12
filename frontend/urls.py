@@ -1,12 +1,12 @@
 from django.urls import path
 
-from frontend import views
-
+from frontend.views import views
+from frontend.views.loginViews import LoginView
 
 app_name = 'frontend'
 
 urlpatterns = [
-    path('', views.loginView, name='login'),
+    path('', LoginView.as_view(), name='login'),
     path('logout', views.logoutView, name='logout'),
     path('home', views.homeView, name='home'),
     path('products', views.productsView, name='products'),

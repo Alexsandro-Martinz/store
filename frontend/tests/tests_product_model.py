@@ -3,7 +3,7 @@ from faker import Faker
 from datetime import datetime as dt
 from django.contrib.auth.models import AnonymousUser, User
 
-from frontend.views import addProductsView, productsView
+from frontend.views.views import addProductsView, productsView
 from frontend.models import Category, Product
 
 class TestAddProductView(TestCase):
@@ -22,16 +22,22 @@ class TestAddProductView(TestCase):
         context = {
             'product_name': 'banana',
             'units': 390,
-            'expired_date': dt.now().date(),
+            'expire_date': "12-15-2022",
             'category_id': c.id,
             'description': 'é um fruta of course',
         }
         
-        request = self.factory.post("/products/add", context, content_type='application/json')
+        request = self.factory.post("/products/add", context)
         request.user = self.user
         response = addProductsView(request)
-        print(response.status_code)
-        self.assertContains(response, context['product_name'])            
+        
+        self.assertEqual(response.status_code, 200)
+        
+        products = Product.objects.all().filter(product_name=context['product_name'])
+        self.assertEqual(products.count(), 1)
+        self.assertEquals(products[0].product_name, context['product_name'])
+        
+        
             
     def test_access_with_anonymousUser(self):
         request = self.factory.get("/product/add")

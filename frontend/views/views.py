@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
@@ -27,7 +28,7 @@ def addCategory(request):
         category_name = request.POST['category_name']
         ct = Category.objects.create(category_name=category_name)
         ct.save()
-        data['messageSuccess'] = ct.category_name.upper() + ' saved with success!'
+        data['messageSuccess'] = ct.category_name.upper() + 'saved with success!'
     
     return JsonResponse(data, status=200)
 
@@ -41,46 +42,29 @@ def productsView(request):
 def addProductsView(request):
     context = {}
     if request.method == "POST":
+
         add_product_form = AddProductForm(request.POST)
-        if add_product_form.is_valid():
+        
+        if add_product_form.is_valid():            
             
+            expired_date_str = add_product_form.cleaned_data['expire_date']
+            expire_date = datetime.strptime(expired_date_str, '%m-%d-%Y').date()
             product_add = Product.objects.create(
                 product_name=add_product_form.cleaned_data["product_name"],
                 description=add_product_form.cleaned_data['description'],
                 category_id=add_product_form.cleaned_data['category_id'],
-                expire_date=add_product_form.cleaned_data['expire_date'],
+                expire_date=expire_date,
                 units=add_product_form.cleaned_data['units'],
             )
             product_add.save()
             context['product_add'] = product_add
+      
             
     template_name = "frontend/products/add-products.html"
     context = {
         "categories": Category.objects.all(),
         'products': Product.objects.all(),}
     return render(request, template_name, context)
-
-
-def loginView(request):
-    if request.user.is_authenticated:
-        return redirect(reverse("frontend:home"))
-
-    if request.method == "POST":
-        user = authenticate(
-            username=request.POST["username"], password=request.POST["password"]
-        )
-
-        if user is not None:
-            login(request, user)
-            return redirect(reverse("frontend:home"))
-        else:
-            messages.add_message(
-                request, messages.ERROR, "Error when logging in the user.Try again."
-            )
-            messages.get_messages(request).used = True
-
-    return render(request, "frontend/login.html")
-
 
 @login_required
 def homeView(request):
