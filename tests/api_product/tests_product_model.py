@@ -22,7 +22,7 @@ class TestAddProductView(TestCase):
         context = {
             'product_name': 'banana',
             'units': 390,
-            'expire_date': "12-15-2022",
+            'expire_date': "2022-12-28",
             'category_id': c.id,
             'description': 'é um fruta of course',
         }

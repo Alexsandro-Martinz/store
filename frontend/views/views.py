@@ -11,6 +11,17 @@ from frontend.forms import AddProductForm
 
 from frontend.models import Category, Product
 
+
+@login_required
+def delProduct(request) :
+    data = {}
+    if request.accepts('application/json') and request.method == 'POST':
+        id = request.POST['id']
+        get_object_or_404(Product, pk=id).delete()
+        data['messageSuccess'] = 'Deleted with success!'
+    
+    return JsonResponse(data, status=200)
+
 @login_required
 def delCategory(request) :
     data = {}
@@ -34,7 +45,9 @@ def addCategory(request):
 
 @login_required
 def productsView(request):
-    context = {"categories": Category.objects.all()}
+    context = {
+        "categories": Category.objects.all(),
+        "products": Product.objects.all(),}
     return render(request, "frontend/products/products.html", context)
 
 
@@ -48,7 +61,7 @@ def addProductsView(request):
         if add_product_form.is_valid():            
             
             expired_date_str = add_product_form.cleaned_data['expire_date']
-            expire_date = datetime.strptime(expired_date_str, '%m-%d-%Y').date()
+            expire_date = datetime.strptime(expired_date_str, '%Y-%m-%d').date()
             product_add = Product.objects.create(
                 product_name=add_product_form.cleaned_data["product_name"],
                 description=add_product_form.cleaned_data['description'],
