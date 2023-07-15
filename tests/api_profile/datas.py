@@ -1,27 +1,32 @@
-datas = (
+datas = [
     {
         "username": "Kristopher Herrera",
+        "first_name": "",
+        "last_name": "",
         "email": "sgreen@example.org",
-        "password": "55QFQf(n(3",
     },
     {
         "username": "Bonnie Phelps",
+        "first_name": "",
+        "last_name": "",
         "email": "njones@example.com",
-        "password": "^%&*8AwJU8",
     },
     {
         "username": "Dawn Little",
+        "first_name": "",
+        "last_name": "",
         "email": "andrew99@example.com",
-        "password": "%9WNfTXS!g",
     },
     {
         "username": "Chase Turner",
+        "first_name": "",
+        "last_name": "",
         "email": "poncemichael@example.net",
-        "password": "+3jTWG+mof",
     },
     {
         "username": "Joseph Smith",
+        "first_name": "",
+        "last_name": "",
         "email": "stacey82@example.net",
-        "password": "er7Hj89t^Q",
     },
-)
+]
