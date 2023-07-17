@@ -4,10 +4,7 @@ from faker import Faker
 
 from api_profile.serializers import UserSerializer
 from .datas import datas
-from rest_framework.test import APIClient
-from collections import OrderedDict
 import json
-from django.http import HttpResponse
 
 fake = Faker()
 
@@ -24,14 +21,13 @@ def test_get_list_with_login_but_not_stuff(client):
     response = client.get('/api-profile/')
     assert response.status_code == 403
 
-
 def test_get_list_unauthorized(client):
     response = client.get("/api-profile/")
     assert response.status_code == 403
 
 
 @pytest.mark.django_db
-def test_get_list_logged_and_super_user(client):
+def test_get_list_logged_and_super_user(admin_client):
     """Test: only super user can take this list
     """
     # Insert: 5 users on Database
@@ -44,15 +40,11 @@ def test_get_list_logged_and_super_user(client):
             password=fake.password(),
         ).save()
     
-    username = fake.name()[0]
-    password = fake.password()
+    serialized = User.objects.all()
+    profiles = UserSerializer(serialized, many=True).data
 
-    user = User.objects.create_superuser(username=username, password=password)
-    datas.append(UserSerializer(user).data)
-    client.login(username=username, password=password)
-
-    response = client.get("/api-profile/")
+    response = admin_client.get("/api-profile/")
     content = response.content.decode("utf8", "strict")
 
     assert response.status_code == 200
-    assert json.loads(content) == datas
+    assert json.loads(content) == profiles
