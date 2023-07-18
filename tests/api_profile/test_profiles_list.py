@@ -8,6 +8,27 @@ import json
 
 fake = Faker()
 
+def test_post_profile(admin_client):
+    """Test post profile and save"""
+    username = fake.name()
+    password = fake.password()
+
+    
+    data = {
+        "username": "Joseph+Smith",
+        "password": "kV8qCdDl*t",
+        "first_name": "Joseph",
+        "last_name": "Smith",
+        "email": "stacey82@example.net",
+    }
+    
+    response = admin_client.post(
+        '/profiles/', data
+    )
+    
+    assert response.status_code == 200
+    assert response.data['username'] == "Joseph+Smith"
+    assert isinstance(response.data['id'], int)
 
 @pytest.mark.django_db
 def test_get_list_with_login_but_not_stuff(client):
