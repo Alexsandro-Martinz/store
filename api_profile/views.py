@@ -19,8 +19,8 @@ class ProfilesView(APIView):
         try:    
             profile = User.objects.get(pk=pk)
             serializer = UserSerializer(profile)
-        except User.DoesNotExist as e:
-            return Response(status=201)
+        except User.DoesNotExist:
+            return Response(status=404)
         else:
             return Response(serializer.data)
 

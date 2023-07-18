@@ -11,7 +11,7 @@ def test_get_profile_unauthorized(client):
     assert response.status_code == 403
 
 
-def test_admin_user_valid_id(admin_client):
+def test_get_profile_status_code_200(admin_client):
     user = User.objects.create_user(
         username=fake.name().split()[1],
         password=fake.password())
@@ -23,4 +23,6 @@ def test_admin_user_valid_id(admin_client):
     assert response.status_code == 200
     assert serialized == content
 
-    
+def test_object_not_founded_404(admin_client):
+    response = admin_client.get('/profiles/10846')
+    assert response.status_code == 404
