@@ -8,7 +8,28 @@ import json
 
 fake = Faker()
 
-def test_post_profile(admin_client):
+def test_post_profile_client(client):
+    """Test post profile and save"""
+    username = fake.name()
+    password = fake.password()
+
+    
+    data = {
+        "username": "Joseph+Smith",
+        "password": "kV8qCdDl*t",
+        "first_name": "Joseph",
+        "last_name": "Smith",
+        "email": "stacey82@example.net",
+    }
+    
+    response = client.post(
+        '/profiles/', data
+    )
+    
+    assert response.status_code == 403
+
+
+def test_post_profile_admin(admin_client):
     """Test post profile and save"""
     username = fake.name()
     password = fake.password()
