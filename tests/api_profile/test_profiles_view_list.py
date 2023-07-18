@@ -18,11 +18,11 @@ def test_get_list_with_login_but_not_stuff(client):
 
     User.objects.create_user(username=username, password=password)
     client.login(username=username, password=password)
-    response = client.get('/api-profile/')
+    response = client.get('/profiles/')
     assert response.status_code == 403
 
 def test_get_list_unauthorized(client):
-    response = client.get("/api-profile/")
+    response = client.get("/profiles/")
     assert response.status_code == 403
 
 
@@ -43,7 +43,7 @@ def test_get_list_logged_and_super_user(admin_client):
     serialized = User.objects.all()
     profiles = UserSerializer(serialized, many=True).data
 
-    response = admin_client.get("/api-profile/")
+    response = admin_client.get("/profiles/")
     content = response.content.decode("utf8", "strict")
 
     assert response.status_code == 200

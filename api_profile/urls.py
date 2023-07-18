@@ -4,5 +4,6 @@ from api_profile import views
 
 
 urlpatterns = [
-    path('', views.ListProfiles.as_view(), name="list_profiles"),
+    path('', views.ProfilesViewList.as_view(),name="profiles-view-list"),
+    path('<int:pk>', views.ProfilesView.as_view(),name="profiles-view"),
 ]
