@@ -39,23 +39,39 @@ def profiles_list(request):
             return Response(status=404, data={"datail": "Data not receved"})
 
 
-@api_view(["GET", "PUT", "DELETE"])
+@api_view(["GET", "PATCH", "DELETE"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def profile_detail(request, pk):
     
     if request.method == "GET":
+        if not (request.user.is_superuser or request.user.id == pk):
+            return Response(status=403)
+        try:
+            user = get_object_or_404(User, pk=pk)
+        except User.DoesNotExist:
+            # Not founded
+            Response(status=404)
+        else:
+            # Ok
+            return Response(status=200, data=UserSerializer(user).data)
+    
+    if request.method == "PATCH":
+        if not (request.user.is_superuser or request.user.id == pk):
+            return Response(status=403)
         
-        if request.user.is_superuser or request.user.id == pk:
-        
+        serialize = UserSerializer(data=request.data)
+        if serialize.is_valid():
+            
             try:
                 user = get_object_or_404(User, pk=pk)
+                user = serialize.update(user, serialize.validated_data)
             except User.DoesNotExist:
                 # Not founded
                 Response(status=404)
             else:
                 # Ok
                 return Response(status=200, data=UserSerializer(user).data)
-
-        return Response(status=403)
+        else:
+            return Response(status=404, data=serialize.error_messages)
 
