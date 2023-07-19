@@ -8,10 +8,10 @@ from api_profile.serializers import UserSerializer
 fake = Faker()
 
 @pytest.mark.django_db
-def test_get_invalid_id(admin_client):
-    """Test get with invalid id
-        Expect:
-            - status code: 400
+def test_get_admin_404(admin_client):
+    """
+        Test get with invalid id
+        Return: 404 status code
     """
     path = f'/profiles/{100}'
     response = admin_client.get(path)
@@ -20,7 +20,7 @@ def test_get_invalid_id(admin_client):
     
 
 @pytest.mark.django_db
-def test_get_profile(admin_client):
+def test_get_admin_200(admin_client):
     """Test get profile by id
         Expect:
             - status code: 200
@@ -38,7 +38,7 @@ def test_get_profile(admin_client):
     assert response.data == UserSerializer(user).data
     
 @pytest.mark.django_db
-def test_get_403(client):
+def test_get_client_403(client):
     """Test get with invalid id
         Expect:
             - status code: 400
@@ -48,7 +48,7 @@ def test_get_403(client):
     
     assert response.status_code == 403
     
-def test_get_client_not_admin(client, django_user_model):
+def test_get_client_403(client, django_user_model):
     """Erro 403 because is not your profile"""
     username = "user1"
     password = "bar"
@@ -64,7 +64,7 @@ def test_get_client_not_admin(client, django_user_model):
     response = client.get(path)
     assert response.status_code == 403
 
-def test_get_your_own_profile(client, django_user_model):
+def test_get_client_200(client, django_user_model):
     """Test if user can get your own profile"""
     username = "user1"
     password = "bar"
@@ -77,7 +77,7 @@ def test_get_your_own_profile(client, django_user_model):
     response = client.get(path)
     assert response.status_code == 200
 
-def test_get_your_own_admin_client(client, django_user_model):
+def test_get_user_200(client, django_user_model):
     """Test if user can get your own profile"""
     username = "user1"
     password = "bar"
