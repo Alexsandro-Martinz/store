@@ -1,3 +1,4 @@
+from typing import Type
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import (
@@ -10,10 +11,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.shortcuts import get_object_or_404
 
-from rest_framework.views import APIView
-
 from api_profile.serializers import UserSerializer
-from typing import Type
 
 @api_view(["GET", "POST"])
 @authentication_classes([SessionAuthentication])
@@ -72,4 +70,3 @@ def profile_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
-        

@@ -36,8 +36,7 @@ class TestAddProductView(TestCase):
         products = Product.objects.all().filter(product_name=context['product_name'])
         self.assertEqual(products.count(), 1)
         self.assertEquals(products[0].product_name, context['product_name'])
-        
-        
+                
             
     def test_access_with_anonymousUser(self):
         request = self.factory.get("/product/add")
