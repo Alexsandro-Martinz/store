@@ -15,7 +15,7 @@ fk = Faker()
 username: str = fk.name()[0]
 password: str = fk.password()
 
-# Admin tests
+# Admin tests 
 @pytest.mark.django_db
 def test_delete_admin_204(admin_client):
     """

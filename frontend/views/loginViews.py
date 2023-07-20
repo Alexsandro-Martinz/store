@@ -6,6 +6,7 @@ from django.views import View
 
 
 class LoginView(View):
+    
     def get(self, request):
         if request.user.is_authenticated:
             return redirect(reverse("frontend:home"))
