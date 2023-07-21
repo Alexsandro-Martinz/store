@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -19,9 +20,16 @@ def categories_list(request):
     
     elif request.method == 'POST':
         serialize = CategorySerializer(data=request.data)
-        category = serialize.create()
-        if category is not None:
-            return Response(CategorySerializer(category).data)  
+        serialize.is_valid(raise_exception=True)
+        
+        try:
+            Category.objects.get(category_name=serialize.validated_data['category_name'])
+        except Category.DoesNotExist:
+            category = serialize.create()
+            return Response(status=status.HTTP_201_CREATED,data=CategorySerializer(category).data)
+        else:
+            return Response(status=status.HTTP_409_CONFLICT)
+          
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
