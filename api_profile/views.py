@@ -13,6 +13,9 @@ from django.shortcuts import get_object_or_404
 
 from api_profile.serializers import UserSerializer
 
+from rest_framework import generics
+    
+
 @api_view(["GET", "POST"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated, IsAdminUser])

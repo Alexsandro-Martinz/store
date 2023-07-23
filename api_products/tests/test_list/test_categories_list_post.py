@@ -10,7 +10,7 @@ def test_post_admin_201(admin_client):
     response = admin_client.post('/categories/', data={'category_name': 'carne'})
     assert response.status_code == status.HTTP_201_CREATED
     
-    content = json.loads(response.content)
+    content = response.json()
     assert content['category_name'] == 'carne'
     assert content['id'] is not None
     

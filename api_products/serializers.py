@@ -6,12 +6,11 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
     
-    def create(self):
-        if self.is_valid():
-            category = Category.objects.create(**self.validated_data)
-            category.save()
-            return category
-        return None
+    def create(self, validated_data):
+        category = Category(**validated_data)
+        category.save()
+        return category
+      
         
     def update(self, instance, validate_data):
         instance.category_name = validate_data.get('category_name', instance.category_name)

@@ -7,7 +7,8 @@ from rest_framework import status
 def test_get_admin_200(admin_client):
     data = {'category_name': 'carne'}
     srz = CategorySerializer(data=data)
-    category = srz.create()
+    srz.is_valid()
+    category = srz.create(srz.validated_data)
     if category is None:
         raise Exception(srz.errors)
     response = admin_client.get('/categories/')
@@ -24,7 +25,8 @@ def test_get_user_200(client, django_user_model):
     client.force_login(user)
     data = {'category_name': 'carne'}
     srz = CategorySerializer(data=data)
-    category = srz.create()
+    srz.is_valid()
+    category = srz.create(srz.validated_data)
     if category is None:
         raise Exception(srz.errors)
     response = client.get('/categories/')
