@@ -11,7 +11,7 @@ class Category(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=True, default=None)
+    category = models.ForeignKey(Category, related_name="category_id", on_delete=models.DO_NOTHING, null=True, default=None)
     expire_date = models.DateField()
     units = models.IntegerField(blank=True, default=0)
 

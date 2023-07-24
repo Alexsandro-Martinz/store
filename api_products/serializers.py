@@ -18,6 +18,7 @@ class CategorySerializer(serializers.ModelSerializer):
         return instance
 
 class ProductSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Product
         fields = '__all__'
@@ -28,11 +29,12 @@ class ProductSerializer(serializers.ModelSerializer):
         return product
       
         
-    def update(self, instance, validate_data):
-        instance.product_name = validate_data.get('product_name', instance.product_name)
-        instance.description = validate_data.get('description', instance.description)
-        instance.category = validate_data.get('category', instance.category)
-        instance.expired_date = validate_data.get('expired_date', instance.expired_date)
-        instance.units = validate_data.get('units', instance.units)
+    def update(self, instance, validated_data):
+        self.partial = True
+        instance.product_name = validated_data.get('product_name', instance.product_name)
+        instance.description = validated_data.get('description', instance.description)
+        instance.category = validated_data.get('category', instance.category)
+        instance.expire_date = validated_data.get('expire_date', instance.expire_date)
+        instance.units = validated_data.get('units', instance.units)
         instance.save()
         return instance
