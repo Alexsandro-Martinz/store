@@ -6,4 +6,6 @@ from api_profile import views
 urlpatterns = [
     path('profiles/', views.profiles_list,name="profiles_list"),
     path('profiles/<int:pk>', views.profile_detail, name="profile_detail"),
+    path('login/', views.loginView, name="login"),
+    path('logout/', views.logoutView, name="logout"),
 ]

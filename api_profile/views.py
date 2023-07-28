@@ -1,3 +1,6 @@
+from rest_framework.decorators import APIView
+from django.contrib.auth import login, logout, authenticate
+
 from typing import Type
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -73,3 +76,27 @@ def profile_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(['POST'])
+def loginView(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    
+    user = authenticate(username=username, password=password)
+    
+    if user is not None:
+        login(request, user)
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def logoutView(request):
+    user: User = request.user
+    if not user.is_anonymous:
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
